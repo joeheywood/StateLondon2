@@ -1,0 +1,26 @@
+{
+    "id": "574090A2",
+    "path": "~/Projects/soldash2/R/db_interface.R",
+    "project_path": null,
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1741878506977.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "24,77",
+        "scrollLine": "16"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1741793181,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1741793181,
+    "read_only": false,
+    "read_only_alternatives": []
+}
