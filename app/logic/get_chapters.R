@@ -1,12 +1,12 @@
 # app/logic/data_transformation.R
-
+box::use(
+  RSQLite[dbConnect, SQLite, dbGetQuery, dbDisconnect],
+)
 
 #' @export
 get_chapters <- function() {
-  c(
-    "Environment",
-    "Health",
-    "Economy",
-    "Social Justice"
-  )
+  cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
+  qr <- dbGetQuery(cn, "SELECT DISTINCT theme FROM meta")
+  on.exit(dbDisconnect(cn))
+  return(as.character(qr$theme))
 }
