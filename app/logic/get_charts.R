@@ -6,9 +6,6 @@ box::use(
 
 #' @export
 get_charts <- function(chpt, llo) {
-  print("---")
-  print(chpt)
-  print(llo)
   if(nchar(chpt) < 2 | nchar(llo) < 2){
     return(c(".", "_"))
   }
@@ -18,7 +15,6 @@ get_charts <- function(chpt, llo) {
   out <- as.character(dat$dataset)
   names(out) <- as.character(dat$indicator)
   on.exit(dbDisconnect(cn))
-  print(out)
 
   return(out)
 }
