@@ -6,9 +6,7 @@ box::use(
 )
 
 box::use(
-  app/logic/get_chapters[get_chapters],
-  app/logic/get_LLOs[get_LLOs],
-  app/logic/get_charts[get_charts],
+  app/logic/get_data[get_data],
 )
 
 

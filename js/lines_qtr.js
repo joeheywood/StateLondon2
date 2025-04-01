@@ -121,7 +121,7 @@
 }*/
 
 function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, add_silent) {
-  svg.selectAll("xaxi")
+  svg.selectAll(".xaxis").remove()
   let nolabels = false
   let xDomain = d3.extent(data, d => d.xd)
   let xRange = [marginLeft, (width - marginRight)]
@@ -400,16 +400,18 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
     })
     .style("shape-rendering", "crispEdges")
 
-    this.xx = "blah"
     //return(this)
+    this.height = lheight
+    this.xScale = xScale
 
 
 }
 
-data.forEach(function(d){
+/*data.forEach(function(d){
   let parseTime = d3.timeParse("%Y-%m-%d");
   d.xd = parseTime(d.xd)
 })
 
 let xx = new run_xaxis_qtr2(data, 0, 0, 0, 0, false)
 console.log(`x: ${xx.xx}`)
+*/

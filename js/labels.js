@@ -8,27 +8,25 @@ function get_labels(y) {
 }
 
 
-function legend_labels(data) {
-  let marginLeft = 10;
-  let marginRight = 0;
+function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
+  // --- Constructor --- //
+  svg.selectAll(".labels").remove()
+  /*let marginLeft = 0;
+  let marginRight = 81;
   let marginTop = 0;
-  let marginBottom = 0
+  let marginBottom = 0*/
   let highlight = true;
   let lgg = {} // a way of renaming legend items?
   let marksize = 5
   forceCols = []
 
-
-  //// Constructor ////
-  let once = 0 // ??
   const random_id = Math.floor(Math.random()*100);
   const gname = `labelsg_${random_id}`
-
-
 
   let labelsg = svg.append("g")
     .classed("labels", true)
     .attr("name", gname);
+
 
   lbwidth = 25;
   lbheight = 0;
@@ -41,10 +39,11 @@ function legend_labels(data) {
 
   let allowed_width = (width - marginLeft) / legitems - 10
 
+  // --- Set out colour palettes --- //
+
 
   let colpal = [];
   let tcolpal = []
-
   const default_cols = ["#6da7de", "#9e0059", "#dee000", "#d82222", "#5ea15d", "#943fa6", "#63c5b5",
                         "#ff38ba", "#eb861e", "#AAAAAA", "#777777"];
 
@@ -94,57 +93,49 @@ function legend_labels(data) {
       .domain(cats)
       .range(tcolpal);
 
+  let cnodes = [];
+  let ix = 0;
+  let xx = 0;
+  let wdth = 0;
+  let xDomain = d3.extent(data, d => d.xd)
+  console.log("checks...")
+  console.log(xDomain)
+  let xRange = [marginLeft, (width - marginRight)]
+  console.log(xRange)
+  console.log("...")
+  let xScale = d3.scaleUtc(xDomain, xRange);
+  let yRange = [(height - marginTop - marginBottom), marginTop]
+  let yext = d3.extent(data, d => d.y)
+  let range = yext[1] - yext[0]
+  let rangepad = range * .25
+  let ymm = (yext[0] >= 0 && yext[0] - range < 0 ? 0 : yext[0] - rangepad)
+  let yDomain = [ymm, yext[1] + rangepad];
+  let fontsize = "12pt"
 
 
+  let yScale = d3.scaleLinear(yDomain, yRange);
+  // const yAxis = d3.axisLeft(yScale)
 
-  // draw //
+  cats.forEach((ct) => {
+    let cdat = dats.get(ct)
+    let maxy = cdat[d3.maxIndex(cdat, d => d.xd)]
+    console.log(`maxy: ${maxy.xd}`)
 
-
-    let cnodes = [];
-    let ix = 0;
-    let xx = 0;
-    let wdth = 0;
-    let xDomain = d3.extent(data, d => d.xd)
-    let xRange = [marginLeft, (width - marginRight)]
-    let xScale = d3.scaleUtc(xDomain, xRange);
-    let yRange = [(height - marginTop - marginBottom), marginTop]
-    let yext = d3.extent(data, d => d.y)
-    let range = yext[1] - yext[0]
-    let rangepad = range * .25
-    let ymm = (yext[0] >= 0 && yext[0] - range < 0 ? 0 : yext[0] - rangepad)
-    let yDomain = [ymm, yext[1] + rangepad];
-    let fontsize = "12pt"
-
-
-    let yScale = d3.scaleLinear(yDomain, yRange);
-    // const yAxis = d3.axisLeft(yScale)
-
-    cats.forEach((ct) => {
-      console.log(`Drawing ${ct}`)
-      let cdat = dats.get(ct)
-      console.log("<<----------------------->>")
-      console.log(cdat)
-      console.log("<<----------------------->>")
-      let maxy = cdat[d3.maxIndex(cdat, d => d.xd)]
-      console.log(maxy)
-
-      // This messy little section gets called several times and fixes itself after
-      // several calls. So the first if block below is to avoid errors on the first one
-      // while the xScale isn't ready yet.
-      if (xScale === undefined ) {
-        if(lbwdithc === undefined) {
-          xx = 0
-        } else {
-          xx = width - lbwidthc
-        }
+    // This messy little section gets called several times and fixes itself after
+    // several calls. So the first if block below is to avoid errors on the first one
+    // while the xScale isn't ready yet.
+    if (xScale === undefined ) {
+      if(lbwdithc === undefined) {
+        xx = 0
       } else {
-        xx = xScale(maxy.xd)
+        xx = width - lbwidth
       }
-      // self.xx = xx;
+    } else {
+      xx = xScale(maxy.xd)
+    }
 
    let cont = labelsg.append("g")
     .attr("name", `container_${ct}`)
-
 
     cont
       .append("circle")
@@ -155,18 +146,16 @@ function legend_labels(data) {
       .attr("cy", yScale(maxy.y))
       .raise()
 
-     cont.
-       append("text")
-      .attr("name", `txt_${ct}`)
-      .text(`${ct} ??`)
-      .attr("x", 125) // why is this 125?
-      .attr("y", yScale(maxy.y) + 5)
-      .classed("collide", true)
-       .style("fill", "#BBBBBB")
-      .style("font-size", fontsize)
-      .style("font-family", "Arial")
-    //yval += get_bbox(`txt_${ct}`).height
-    // cont.raise()
+     cont
+     .append("text")
+     .attr("name", `txt_${ct}`)
+     .text(`${ct} ??`)
+     .attr("x", 125) // why is this 125?
+     .attr("y", yScale(maxy.y) + 5)
+     .classed("collide", true)
+     .style("fill", "#BBBBBB")
+     .style("font-size", fontsize)
+     .style("font-family", "Arial")
 
     cnodes.push(
       {
@@ -179,13 +168,10 @@ function legend_labels(data) {
       }
     )
 
+    let cbb = cont.node().getBBox()
+    console.log(`${ct} xx: ${xx}`)
 
   })
-
-  let xg = svg.append("g")
-    .classed("collide_cont", true)
-    .attr("name", "collide_cont")
-
 
 
   var simulation = d3.forceSimulation(cnodes)
@@ -194,34 +180,36 @@ function legend_labels(data) {
 
   let initx = 0;
 
-    function ticked() {
+  function ticked() {
 
-      //self.xx = xx
-      xx = self.xx
-
-    	labelsg.selectAll(".collide")
-    		.data(cnodes)
-    		.join('text')
-        .text(d => {
-          return (d.text === "only" ? "" : d.text)
-        })
-        .classed("collide", true)
-        .attr('x', d => xx + 10)
-    		.attr('y', d => d.y)
-        .style("fill", d => tcolor(d.text))
-        .style("font-size", fontsize)
-        .style("font-family", "Arial");
-      //cont.raise()
-    }
-
-    // this.lbwidth = get_bbox(svg, gname).width - 125
-    labelsg.raise()
+  	labelsg.selectAll(".collide")
+  		.data(cnodes)
+  		.join('text')
+      .text(d => {
+        return (d.text === "only" ? "" : d.text)
+      })
+      .classed("collide", true)
+      .attr('x', d => xx + 10)
+  		.attr('y', d => d.y)
+      .style("fill", d => tcolor(d.text))
+      .style("font-size", fontsize)
+      .style("font-family", "Arial");
+  }
 
 
-  /*
-    */
-    // self.lbheight = get_bbox(svg, gname).height + 40 // adding a bit of padding, otherwise it's a bit too close
+  let maxw = 0;
 
+  labelsg.selectAll(".collide")
+  .each(function() {
+    let cw = this.getBBox().width
+    maxw = (maxw >= cw ? maxw : cw)
+  })
+
+  this.lbwidth = maxw;
+  this.xx = xx
+  console.log(`xx: ${xx}`)
+  this.color = color
+  this.tcolor = tcolor
 }
 
-legend_labels(data)
+
