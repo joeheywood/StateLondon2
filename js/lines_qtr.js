@@ -1,130 +1,16 @@
-// !preview r2d3 data=c(0.3, 0.6, 0.8, 0.95, 0.40, 0.20)
+// !preview r2d3 data=dat, dependencies=c("js/yaxis.js", "js/labels.js", "js/lines_qtr.js", "js/lines.js")
 //
 // r2d3: https://rstudio.github.io/r2d3
 //
 
 
-/*function run_xaxis_qtr(data, marginLeft, marginRight, marginTop) {
-  let ggq, lheight
-
-  data.forEach(function(d){
-    let parseTime = d3.timeParse("%Y-%m-%d");
-    d.xd = parseTime(d.xd)
-  })
-
-  let textCol = "#888888"
-  xg = svg.append("g").classed("xaxis", true)
-  xRange = [marginLeft, ((width - marginRight))]
-  xDomain = d3.extent(data, d => d.dtid)
-  let ggql, qheight = 0;
-  xg.selectAll("*").remove()
-
-  let silentdomain = data.map(d => d.dtid) // what is this for?
-  let gpd = d3.group(data, d => d.dtid)
-  // let mappedData = new Map()
-  xScale = d3.scaleBand(silentdomain, xRange).align(0).paddingOuter(0);
-  let silentScale = xScale
 
 
-
-  let wdth = xScale(2) - xScale(1)
-
-  if(wdth > 30) {
-    let xAxisQt = d3.axisBottom(xScale)
-        .tickSizeOuter(0)
-        .tickSizeInner(10)
-        .tickFormat("")
-
-    xg.append("g").attr("class", "gridxq")
-
-    ggq = xg.append("g")
-      .attr("name", "ggq")
-      .classed("qtrs", true)
-      .call(xAxisQt);
-
-    ggq.selectAll(".tick text")
-      .style("font-family", "Arial")
-      .style("font-size", "11pt")
-      .style("fill", textCol)
-      .text((d) => {
-        let itm = gpd.get(d)[0].xd
-
-        return  `Q${+d3.timeFormat("%m")(itm)/3}`
-      })
-
-    ggq.selectAll(".tick line")
-      .style("opacity", 0)
-
-
-    ggq.select(".domain").style("stroke", "#888888")
-    let qheight = ggq.node().getBBox().height
-
-  }
-
-
-  const xAxisQY = d3.axisBottom(xScale)
-    .tickSizeInner(qheight)
-    .tickSizeOuter(0)
-
-  let ggy = xg.append("g")
-    .attr("name", "ggy")
-    .classed("yrs", true)
-    .call(xAxisQY);
-
-
-  ggy.selectAll(".tick text")
-    .style("font-family", "Arial")
-    .style("font-size", "14pt")
-    .style("fill", "#ABABAB")
-    .text((d) => {
-      let itm = gpd.get(d)[0].xd
-      let mtext = `Q${+d3.timeFormat("%m")(itm)/3}`
-      let ytext = `${+d3.timeFormat("%Y")(itm)}`
-      return  (mtext == "Q3" ? ytext : "")
-    })
-    .attr("transform", `translate(${wdth / -2}, 0)`)
-
-
-   xg.selectAll(".yrs line")
-    .style("stroke", "#BCBCBC")
-    .style("stroke-opacity", "0.4")
-    .style("stroke-width", (d) => {
-      let itm = gpd.get(d)[0].xd
-      let mm = +d3.timeFormat("%m")(itm)/3
-      return (mm == 1 ? 4 : 0.5)
-    })
-    .style("shape-rendering", "crispEdges")
-    .attr("transform", `translate(${wdth / -2}, 0)`)
-    .attr("y2", (d, i) => {
-      let ii = gpd.get(d)[0].xd
-      let mm = +d3.timeFormat("%m")(ii)/3
-      return (mm == 1 ? qheight + 10 : qheight)
-    })
-
-
-
-
-  ggy.attr("transform", `translate(0, ${height - qheight })`)
-
-
-  ggy.select(".domain").remove();
-  const ybox = ggy.node().getBBox()
-
-  lheight = qheight + ybox.height
-
-
-  if(wdth > 30) {
-    ggq.attr("transform", `translate(0, ${height - lheight})`)
-  }
-
-  ggy.attr("transform", `translate(0, ${height - lheight})`)
-}*/
-
-function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, add_silent) {
+function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, add_silent, xx, yx) {
   svg.selectAll(".xaxis").remove()
   let nolabels = false
   let xDomain = d3.extent(data, d => d.xd)
-  let xRange = [marginLeft, (width - marginRight)]
+  let xRange = [marginLeft, (xx - marginRight)]
   const random_id = Math.floor(Math.random()*1000); // do we still need this?
   const gname = `labelsg_${random_id}`
   let xg = svg.append("g").classed("xaxis", true).attr("name", gname)
@@ -138,13 +24,6 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
   xg.selectAll("*").remove()
 
   let xScale = d3.scaleUtc(xDomain, xRange);
-
-
-  /*if(add_silent) {
-    let silentdomain = data.map(d => d.dtid)
-
-    self.silentScale = d3.scaleBand(silentdomain, self.xRange).align(0).paddingOuter(0)
-  }*/
 
 
   let t1Y = +d3.timeFormat("%Y")(xDomain[0])
@@ -275,13 +154,13 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
       let yrstring = d3.timeFormat("%Y")(d)
       let mm = d3.timeFormat("%m")(d)
 
-
       return (yrstring == ylast && mlast < 4 ? "" : yrstring)
     })
 
 
 
 
+let ggy3
   if(m1 < 10) {
     let xt1 = d3.timeParse("%Y-%m-%d")(`${y1}-${(m1 <= 7 ? "07" : m1)}-02`)
     xAxisY3 = d3.axisBottom(xScale)
@@ -289,7 +168,7 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
       .tickFormat(d => d3.timeFormat("%Y")(d))
       .tickSize(qheight * 2)
 
-    let ggy3 = xg.append("g")
+    ggy3 = xg.append("g")
       .attr("name", `ggxyrs3_${random_id}`)
       .classed("yrs", true)
       .call(xAxisY3);
@@ -306,7 +185,6 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
       .style("stroke-opacity", "0.4")
       .attr('text-anchor', "middle")
     ggy3.select(".domain").remove();
-    ggy3.attr("transform", `translate(0, ${height - lheight})`)
   }
 
 
@@ -353,19 +231,20 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
 
 
   //ggy.attr("transform", `translate(0, ${height - lheight})`)
-  ggy2.attr("transform", `translate(0, ${height - lheight})`)
+  ggy2.attr("transform", `translate(0, ${yx - lheight})`)
+  if(m1 < 10) {  ggy3.attr("transform", `translate(0, ${yx - lheight})`) }
 
   if(wdth > 30) {
 
 
-    ggql.attr("transform", `translate(0, ${height - lheight})`)
-    ggq.attr("transform", `translate(0, ${height - lheight})`)
+    ggql.attr("transform", `translate(0, ${yx - lheight})`)
+    ggq.attr("transform", `translate(0, ${yx - lheight})`)
 
 
     let gridq = xg.selectAll(".gridxq")
       .call(d3.axisBottom(xScale)
             .tickValues(tVal)
-            .tickSizeInner(height - lheight - marginTop)
+            .tickSizeInner(yx - lheight - marginTop)
             .tickSizeOuter(0)
             .tickFormat("")
            )
@@ -374,7 +253,7 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
     let gridq = xg.selectAll(".gridxq")
       .call(d3.axisBottom(xScale)
             .ticks(d3.timeYear.every(1), "%Y")
-            .tickSizeInner(height - lheight - marginTop)
+            .tickSizeInner(yx - lheight - marginTop)
             .tickSizeOuter(0)
             .tickFormat("")
            )
@@ -407,11 +286,21 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
 
 }
 
-/*data.forEach(function(d){
-  let parseTime = d3.timeParse("%Y-%m-%d");
-  d.xd = parseTime(d.xd)
+
+//let xx = new run_xaxis_qtr2(data, 0, 0, 0, 0, false)
+/*
+r2d3.onRender(function(data, svg, width, height, options){
+  if(data.length == 0) {
+    return false
+  }
+  data.forEach(function(d){
+    let parseTime = d3.timeParse("%Y-%m-%d");
+    d.xd = parseTime(d.xd)
+  })
+  let xx = new run_xaxis_qtr2(data, 0, 84, 0, 85, false)
+
+
+
 })
 
-let xx = new run_xaxis_qtr2(data, 0, 0, 0, 0, false)
-console.log(`x: ${xx.xx}`)
 */

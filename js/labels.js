@@ -8,7 +8,7 @@ function get_labels(y) {
 }
 
 
-function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
+function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, wl, hl) {
   // --- Constructor --- //
   svg.selectAll(".labels").remove()
   /*let marginLeft = 0;
@@ -37,7 +37,7 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
   let legitems = cats.length + Object.keys(lgg).length
   //self.totwidth = width
 
-  let allowed_width = (width - marginLeft) / legitems - 10
+  let allowed_width = (wl - marginLeft) / legitems - 10
 
   // --- Set out colour palettes --- //
 
@@ -98,13 +98,9 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
   let xx = 0;
   let wdth = 0;
   let xDomain = d3.extent(data, d => d.xd)
-  console.log("checks...")
-  console.log(xDomain)
-  let xRange = [marginLeft, (width - marginRight)]
-  console.log(xRange)
-  console.log("...")
+  let xRange = [marginLeft, (wl - marginRight)]
   let xScale = d3.scaleUtc(xDomain, xRange);
-  let yRange = [(height - marginTop - marginBottom), marginTop]
+  let yRange = [(hl - marginTop - marginBottom), marginTop]
   let yext = d3.extent(data, d => d.y)
   let range = yext[1] - yext[0]
   let rangepad = range * .25
@@ -119,7 +115,6 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
   cats.forEach((ct) => {
     let cdat = dats.get(ct)
     let maxy = cdat[d3.maxIndex(cdat, d => d.xd)]
-    console.log(`maxy: ${maxy.xd}`)
 
     // This messy little section gets called several times and fixes itself after
     // several calls. So the first if block below is to avoid errors on the first one
@@ -128,7 +123,7 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
       if(lbwdithc === undefined) {
         xx = 0
       } else {
-        xx = width - lbwidth
+        xx = wl - lbwidth
       }
     } else {
       xx = xScale(maxy.xd)
@@ -169,7 +164,6 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
     )
 
     let cbb = cont.node().getBBox()
-    console.log(`${ct} xx: ${xx}`)
 
   })
 
@@ -207,7 +201,6 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft) {
 
   this.lbwidth = maxw;
   this.xx = xx
-  console.log(`xx: ${xx}`)
   this.color = color
   this.tcolor = tcolor
 }

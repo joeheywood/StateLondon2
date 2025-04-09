@@ -3,12 +3,12 @@
 // r2d3: https://rstudio.github.io/r2d3
 //
 
-function yaxis(data, marginTop, marginRight, marginBottom, marginLeft ) {
+function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy ) {
   svg.selectAll(".yaxis_1").remove()
   let chart_id = 1
 
   //// Y-Axis ////
-  let ticks = Math.floor(height/110)
+  let ticks = Math.floor(hy/110)
   let tickFormat = ".0f"
   yFontsize = "11pt"
 
@@ -19,7 +19,7 @@ function yaxis(data, marginTop, marginRight, marginBottom, marginLeft ) {
   let rangepad = range * .25
   let ymm = (yext[0] >= 0 && yext[0] - range < 0 ? 0 : yext[0] - rangepad)
   yDomain = [ymm, yext[1] + rangepad];
-  yRange = [(height - marginTop - marginBottom), marginTop]
+  yRange = [(hy - marginTop - marginBottom), marginTop]
 
   let yg = svg.append("g")
     .classed(`yaxis_${chart_id}`, true)
@@ -31,7 +31,7 @@ function yaxis(data, marginTop, marginRight, marginBottom, marginLeft ) {
   let yax = yg
     .call(yAxis
     .ticks(ticks)
-    .tickSize(-width)
+    .tickSize(-wy)
     .tickFormat(d3.format(tickFormat)));
 
   yax.selectAll(".tick text")
@@ -46,7 +46,7 @@ function yaxis(data, marginTop, marginRight, marginBottom, marginLeft ) {
     .attr('dy', '-4');
 
   yax.selectAll(".tick line")
-    .attr("x2", (width - marginRight) - 5)
+    .attr("x2", (wy - marginRight) - 5)
 
   txtlft = 0;
 
