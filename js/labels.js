@@ -134,7 +134,7 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, w
 
     cont
       .append("circle")
-      .attr("fill", "white")
+      .attr("fill", color(ct))
       .attr("stroke", d => color(ct))
       .attr("r", marksize)
       .attr("cx", xx)

@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.4.3",
+    "Version": "4.3.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -285,13 +285,13 @@
     },
     "codetools": {
       "Package": "codetools",
-      "Version": "0.2-20",
+      "Version": "0.2-19",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "61e097f35917d342622f21cdc79c256e"
+      "Hash": "c089a619a7fae175d149d89164f8c7d8"
     },
     "commonmark": {
       "Package": "commonmark",
@@ -676,7 +676,7 @@
     },
     "pkgbuild": {
       "Package": "pkgbuild",
-      "Version": "1.4.7",
+      "Version": "1.4.6",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -687,7 +687,7 @@
         "desc",
         "processx"
       ],
-      "Hash": "ae47817501cafc99f57586b6e5241134"
+      "Hash": "2914aa6216361f59e40d5c84667ac155"
     },
     "pkgconfig": {
       "Package": "pkgconfig",
@@ -813,6 +813,20 @@
         "R"
       ],
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
+    },
+    "remotes": {
+      "Package": "remotes",
+      "Version": "2.5.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "methods",
+        "stats",
+        "tools",
+        "utils"
+      ],
+      "Hash": "3ee025083e66f18db6cf27b56e23e141"
     },
     "renv": {
       "Package": "renv",

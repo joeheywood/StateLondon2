@@ -34,7 +34,7 @@ server <- function(id, cs) {
           "js/yaxis.js" )
       dt <- get_chart_data(cs())
       output$para <- renderText({glue("From server...{cs()} {nrow(dt$d)}")})
-      output$chart_ttl <- renderText({dt$m$title})
+      output$chart_ttl <- renderText({dt$m$indicator})
       output$d3 <- renderD3({
         r2d3(data = dt$d, script = "js/lines_chart_dt.js", dependencies = deps)
       })

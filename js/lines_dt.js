@@ -69,13 +69,14 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
 
     if(onlyyears) numticks = 5
 
-    if(monthx < 4.5) {
+
+    if(monthx < 12) {
       onlyyears = true
     }
 
     let ticktext = ggm.selectAll(".tick text")
       .style("font-family", "Arial")
-      .style("font-size", "11pt")
+      .style("font-size", "10pt")
       .style("fill", "#888888")
       .text(d => (onlyyears == true ? d3.timeFormat("%Y")(d) : d3.timeFormat("%b")(d)))
       .attr("transform", d => (onlyyears ? `translate(${yearx}, 0)` : `translate(0,0)`))
@@ -254,7 +255,7 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
 
       ggjy.selectAll(".tick text")
       .style("font-family", "Arial")
-      .style("font-size", "11pt")
+      .style("font-size", "10pt")
       .style("fill", "#ABABAB")
       .style("fill", "#555555")
       .style("stroke-opacity", "0.4")
