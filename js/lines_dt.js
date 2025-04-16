@@ -3,7 +3,8 @@
 // r2d3: https://rstudio.github.io/r2d3
 //
 
-function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, add_silent, xx, yx) {
+function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, add_silent, xdw, xdh) {
+  // console.log(`In xaxis dt: w: ${xdw} | h: ${xdh}`)
   let nolabels = false;
   let showXgrid = true
   let numticks =  Math.floor(width / 170)
@@ -19,7 +20,7 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
 
   // marginLeft = marginLeft
   let xDomain = d3.extent(data, d => d.xd)
-  let xRange = [marginLeft, (xx - marginRight)]
+  let xRange = [marginLeft, (xdw - marginRight)]
   let xg = svg.append("g").classed("xaxis", true)
 
 
@@ -170,8 +171,8 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
     let lheight = (onlyyears ? mbox.height : mbox.height + ybox.height)
     let lwidth = width
 
-    ggm.attr("transform", `translate(0, ${height - lheight})`) // missing out margin top here?
-    ggyt.attr("transform", `translate(0, ${height - lheight})`)
+    ggm.attr("transform", `translate(0, ${xdh - lheight})`) // missing out margin top here?
+    ggyt.attr("transform", `translate(0, ${xdh - lheight})`)
     ggm.raise()
 
 
@@ -181,7 +182,7 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
         .call(d3.axisBottom(xScale)
           .ticks(numticks)
           //.ticks(5)
-          .tickSize(height - lheight - marginTop)
+          .tickSize(xdh - lheight - marginTop)
           .tickFormat("")
       )
       .attr("transform", `translate(0, ${marginTop})`)
@@ -202,7 +203,7 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
       let gridy = xg.selectAll(`.gridxy_${chart_id}`)
         .call(d3.axisBottom(xScale)
           .ticks(d3.timeYear.every(1), "%Y")
-          .tickSize(height - lheight - marginTop)
+          .tickSize(xdh - lheight - marginTop)
           .tickFormat("")
         )
       .attr("transform", `translate(0, ${marginTop})`)
@@ -248,7 +249,7 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
         .attr("name", "ggjy")
         .classed("justyears", true)
         .call(xAxis);
-      ggjy.attr("transform", `translate(0, ${height - mbox.height})`)
+      ggjy.attr("transform", `translate(0, ${xdh - mbox.height})`)
 
       ggjy.selectAll(".tick line")
         .style("stroke", "#BCBCBC")

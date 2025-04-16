@@ -3,13 +3,13 @@
 // r2d3: https://rstudio.github.io/r2d3
 //
 
-function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy ) {
+function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy, yfmt ) {
   svg.selectAll(".yaxis_1").remove()
   let chart_id = 1
 
   //// Y-Axis ////
   let ticks = Math.floor(hy/110)
-  let tickFormat = ".0f"
+  let tickFormat = yfmt
   yFontsize = "11pt"
 
 
@@ -61,7 +61,7 @@ function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy ) 
     lbw = (lbw >= ygw ? lbw : ygw)
   })
 
-  this.lbwidth = lbw
+  this.lbwidth = lbw + 7
   this.yScale = yScale
 }
 

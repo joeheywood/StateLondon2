@@ -112,12 +112,7 @@ function run_xaxis_qtr2(data, marginTop, marginRight, marginBottom, marginLeft, 
     //const qbox = get_bbox(svg, `ggql_${random_id}`)
     const qbox = ggql.node().getBBox()
     qheight = qbox.height
-
-
   }
-
-
-
 
   const lastyear = d3.timeFormat("%Y")(xDomain[1])
   const lastmonth = d3.timeFormat("%m")(xDomain[1])
@@ -180,7 +175,7 @@ let ggy3
         return `translate(0, ${qheight * -1})`
       })
       .style("font-family", "Arial")
-      .style("font-size", "14pt")
+      .style("font-size", (wdth < 30 ? "11pt" : "14pt"))
       .style("fill", "#ABABAB")
       .style("stroke-opacity", "0.4")
       .attr('text-anchor', "middle")
@@ -204,7 +199,7 @@ let ggy3
       return `translate(${mv }, ${qheight * -1})`
   })
   .style("font-family", "Arial")
-  .style("font-size", "14pt")
+  .style("font-size", (wdth < 30 ? "11pt" : "14pt"))
   .style("fill", "#ABABAB")
   .style("stroke-opacity", (d) => {
     return "0.4"
@@ -235,7 +230,6 @@ let ggy3
   if(m1 < 10) {  ggy3.attr("transform", `translate(0, ${yx - lheight})`) }
 
   if(wdth > 30) {
-
 
     ggql.attr("transform", `translate(0, ${yx - lheight})`)
     ggq.attr("transform", `translate(0, ${yx - lheight})`)

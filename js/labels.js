@@ -199,6 +199,7 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, w
     maxw = (maxw >= cw ? maxw : cw)
   })
 
+
   this.lbwidth = maxw;
   this.xx = xx
   this.color = color
