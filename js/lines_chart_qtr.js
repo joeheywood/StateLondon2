@@ -30,7 +30,6 @@ r2d3.onRender(function(data, svg, width, height, options){
     let parseTime = d3.timeParse("%Y-%m-%d");
     d.xd = parseTime(d.xd)
   })
-  console.log(`w: ${width} | h: ${height} | dl: ${data.length}`)
   let yax = new yaxis(data, 0, 0, 0, 0, width, height, options.yfmt)
   let ll = new legend_labels(data, 0, 0, 0, 0, width, height)
   let xx = new run_xaxis_qtr2(data, 0, ll.lbwidth, 0, yax.lbwidth, false, width, height)
@@ -46,10 +45,10 @@ r2d3.onRender(function(data, svg, width, height, options){
 
 r2d3.onResize(function(width, height){
   svg.selectAll("*").remove()
-  let yax = new yaxis(dd1, 0, 0, 0, 0, width, height)
+  let yax = new yaxis(dd1, 0, 0, 0, 0, width, height, options.yfmt)
   let ll = new legend_labels(dd1, 0, 0, 0, 0, width, height)
   let xx = new run_xaxis_qtr2(dd1, 0, 84, 0, yax.lbwidth, false, width, height)
-  yax = new yaxis(dd1, 0, 65, xx.height, 0, width, height)
+  yax = new yaxis(dd1, 0, 65, xx.height, 0, width, height, options.yfmt)
   ll = new legend_labels(dd1, 0, 84, xx.height, 0, width, height)
 
   let lns = new lines(dd1, ll.color, xx.xScale, yax.yScale)
