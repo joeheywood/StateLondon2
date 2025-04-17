@@ -3,7 +3,7 @@
 // r2d3: https://rstudio.github.io/r2d3
 //
 
-function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy, yfmt ) {
+function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy, yfmt) {
   svg.selectAll(".yaxis_1").remove()
   let chart_id = 1
 

@@ -3,22 +3,7 @@
 // r2d3: https://rstudio.github.io/r2d3
 //
 
-
-/*
-let yax = new yaxis(data, 0, 0, 0, 0)
-let ll = new legend_labels(data, 0, 0, 0, 0)
-let xx = new run_xaxis_qtr2(data, 0, 84, 0, yax.lbwidth, false)
-yax = new yaxis(data, 0, 65, xx.height, 0)
-ll = new legend_labels(data, 0, 84, xx.height, 0)
-
-let lns = new lines(data, ll.color, xx.xScale, yax.yScale)
-
-*/
-
 let dd1;
-
-
-
 
 r2d3.onRender(function(data, svg, width, height, options){
   width = 1000

@@ -23,8 +23,6 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
   let xRange = [marginLeft, (xdw - marginRight)]
   let xg = svg.append("g").classed("xaxis", true)
 
-
-
   let xScale = d3.scaleUtc(xDomain, xRange);
 
   monthx = (xScale(d3.timeParse("%Y-%m-%d")("2022-01-02")) - xScale(d3.timeParse("%Y-%m-%d")("2022-01-01"))) * 15
@@ -33,14 +31,11 @@ function run_xaxis_dt(data, marginTop, marginRight, marginBottom, marginLeft, ad
 
 
 
-    xAxis = d3.axisBottom(xScale)
-    .tickValues(data.map(d => d.xd))
-    .tickSizeOuter(0)
-    .tickSizeInner(5)
-    .tickFormat(d => (d3.timeFormat("%m")(d) == "01" ? d3.timeFormat("%b")(d) : d3.timeFormat("%b")(d)))
-
-
-
+  xAxis = d3.axisBottom(xScale)
+  .tickValues(data.map(d => d.xd))
+  .tickSizeOuter(0)
+  .tickSizeInner(5)
+  .tickFormat(d => (d3.timeFormat("%m")(d) == "01" ? d3.timeFormat("%b")(d) : d3.timeFormat("%b")(d)))
 
     num_actual_ticks = xScale.ticks().length;
 
