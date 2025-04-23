@@ -22,7 +22,8 @@ run_line_chart <- function(dtst) {
   print(dtst)
   dt <- get_chart_data(dtst)
   scrpt <- ifelse(dt$m$timeperiod_type == "Quarter", "js/lines_chart_qtr.js", "js/lines_chart_dt.js")
-  d3 <-  r2d3(data = dt$d, script = scrpt, options = list(yfmt = dt$m$yformat),
+  d3 <-  r2d3(data = dt$d, script = scrpt,
+              options = list(yfmt = dt$m$yformat, high = TRUE),
               dependencies = deps, width = 1100, height = 530)
   theme_dir <- glue("{output_dir}/{dt$m$theme}")
   if(!dir.exists(theme_dir)) dir.create(theme_dir)
@@ -60,9 +61,9 @@ run_all_charts <- function() {
 
 }
 
-cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
-vls <- dbGetQuery(cn, "select dataset, value from charts_data")
-dbDisconnect(cn)
-
-vls %>%
-  summarise(.by = dataset, mn = round(min(value), 2), mx = round(max(value), 2))
+# cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
+# vls <- dbGetQuery(cn, "select dataset, value from charts_data")
+# dbDisconnect(cn)
+#
+# vls %>%
+#   summarise(.by = dataset, mn = round(min(value), 2), mx = round(max(value), 2))

@@ -8,14 +8,14 @@ function get_labels(y) {
 }
 
 
-function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, wl, hl) {
+function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, wl, hl, highlight) {
   // --- Constructor --- //
   svg.selectAll(".labels").remove()
   /*let marginLeft = 0;
   let marginRight = 81;
   let marginTop = 0;
   let marginBottom = 0*/
-  let highlight = true;
+  // let highlight = true;
   let lgg = {} // a way of renaming legend items?
   let marksize = 5
   forceCols = []
