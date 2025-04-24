@@ -3,6 +3,7 @@
 //
 
 let dd1;
+
 let high = true;
 
 r2d3.onRender(function(data, svg, width, height, options){
@@ -15,6 +16,7 @@ r2d3.onRender(function(data, svg, width, height, options){
   data.forEach(function(d){
     let parseTime = d3.timeParse("%Y-%m-%d");
     d.xd = parseTime(d.xd)
+    if(d.y == null) d.y = NaN
   })
   high = options.high
   // console.log(`w: ${width} | h: ${height} | dl: ${data.length}`)
@@ -36,7 +38,7 @@ r2d3.onResize(function(width, height){
   let ll = new legend_labels(dd1, 0, 0, 0, 0, width, height, high)
   let xx = new run_xaxis_dt(dd1, 0, ll.lbwidth, 0, yax.lbwidth, false, width, height)
   yax = new yaxis(dd1, 0, ll.lbwidth, xx.height, 0, width, height, options.yfmt)
-  ll = new legend_labels(dd1, 0, 84, xx.height, 0, width, height, high)
+  ll = new legend_labels(dd1, 0, ll.lbwidth, xx.height, 0, width, height, high)
 
   let lns = new lines(dd1, ll.color, xx.xScale, yax.yScale)
 })

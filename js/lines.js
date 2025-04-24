@@ -49,8 +49,11 @@ function lines(data, color, xScale, yScale) {
     .attr('stroke', d => color(d[0]))
     .attr("d", d => {
       return d3.line()
-      .defined((d, i) => { return !isNaN(d.y)})
-      // .curve(d3.curveMonotoneX)
+      .defined((d, i) => {
+        console.log(`d: ${d.y} - ${isNaN(d.y)}`)
+        return !isNaN(d.y)
+
+      })
       .x(d => xScale(d.xd))
       .y(d => yScale(d.y))
       (d[1]);

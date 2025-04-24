@@ -9,7 +9,8 @@ box::use(
 #' @export
 get_chart_data <- function(dtst) {
   cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
-  dat <- dbGetQuery(cn, glue("SELECT * FROM charts_data WHERE dataset = '{dtst}'"))
+  dat <- dbGetQuery(cn, glue("SELECT * FROM charts_data WHERE dataset = '{dtst}'")) %>%
+    arrange(timeperiod_sortable)
   m <- dbGetQuery(cn, glue("SELECT * FROM meta WHERE dataset = '{dtst}'"))
   on.exit(dbDisconnect(cn))
   zeroes <- which(str_detect(dat$timeperiod_sortable, "0{4}$"))

@@ -19,15 +19,17 @@ deps <- c(
 
 
 run_line_chart <- function(dtst) {
-  print(dtst)
   dt <- get_chart_data(dtst)
+  dt$d <- dt$d %>% arrange(xd)
   scrpt <- ifelse(dt$m$timeperiod_type == "Quarter", "js/lines_chart_qtr.js", "js/lines_chart_dt.js")
+  high <- "London" %in% dt$d$b
   d3 <-  r2d3(data = dt$d, script = scrpt,
-              options = list(yfmt = dt$m$yformat, high = TRUE),
+              options = list(yfmt = dt$m$yformat, high = high),
               dependencies = deps, width = 1100, height = 530)
   theme_dir <- glue("{output_dir}/{dt$m$theme}")
   if(!dir.exists(theme_dir)) dir.create(theme_dir)
   save_d3_svg(d3, glue("{theme_dir}/{dt$m$title}.svg") )
+  print(glue("{dtst} = {theme_dir} = {dt$m$title}"))
   return(glue("{theme_dir}/{dt$m$title}.svg"))
 }
 
