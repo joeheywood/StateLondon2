@@ -35,10 +35,9 @@ run_line_chart <- function(dtst) {
 
 
 
-
+## function to correct for svg size. I couldn't find a simple way to control for this
+## using the r2d3 function that worked (altering width and height didn't work for me)
 change_svg_size <- function(fl) {
-  print(fl)
-  # x <- readLines("~/Projects/sol_svgs/Economy/Londoners have access to good work.svg")
   x <- readLines(fl) %>%
     str_replace_all("<div (.*?)</div>$", "\n\n") %>%
     str_replace_all("<svg width=\"\\d+\" height=\"\\d+\"",
@@ -50,17 +49,15 @@ change_svg_size <- function(fl) {
 correct_svg_size <- function() {
   svgs <- dir(output_dir, pattern = ".svg", full.names = TRUE, recursive = TRUE)
 
-  map_chr(svgs, change_svg_size)
+  map_chr(svgs, change_svg_size) # returns names of corrected filepaths
 }
 
 run_all_charts <- function() {
   cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
   m <- dbGetQuery(cn, glue("SELECT dataset FROM meta"))
   dbDisconnect(cn)
-  map_chr(m$dataset, run_line_chart)
+  charts <- map_chr(m$dataset, run_line_chart)
   correct_svg_size()
-
-
 }
 
 # cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
