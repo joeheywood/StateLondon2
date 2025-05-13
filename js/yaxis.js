@@ -18,6 +18,10 @@ function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy, y
   let range = yext[1] - yext[0]
   let rangepad = range * .25
   let ymm = (yext[0] >= 0 && yext[0] - range < 0 ? 0 : yext[0] - rangepad)
+  // HERE TAKE yDomain to 0 if within 50% or rangepad
+  // if ymm > 0 and yext[0] -
+
+
   yDomain = [ymm, yext[1] + rangepad];
   yRange = [(hy - marginTop - marginBottom), marginTop]
 
