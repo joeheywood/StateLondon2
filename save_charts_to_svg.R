@@ -24,8 +24,14 @@ run_line_chart <- function(dtst) {
     dt$d <- dt$d %>% arrange(xd)
     scrpt <- ifelse(dt$m$timeperiod_type == "Quarter", "js/lines_chart_qtr.js", "js/lines_chart_dt.js")
     high <- "London" %in% dt$d$b
+    if(dt$m$ystart0 %in% "N") {
+      yforce = c()
+    } else {
+      yforce = str_split(dt$m$ystart0, ",")[[1]]
+    }
+    # yforce <- ifelse(dt$m$ystart0 == "N", c(),str_split(dt$m$ystart0, ",")[[1]] )
     d3 <-  r2d3(data = dt$d, script = scrpt,
-                options = list(yfmt = dt$m$yformat, high = high),
+                options = list(yfmt = dt$m$yformat, high = high, yforce=yforce ),
                 dependencies = deps, width = 1100, height = 530)
     theme_dir <- glue("{output_dir}/{dt$m$theme}")
     if(!dir.exists(theme_dir)) dir.create(theme_dir)

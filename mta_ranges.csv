@@ -1,0 +1,81 @@
+dataset,title,ystart0
+unemp,Share of extended unemployment,N
+emp,Employment rate (percentage),N
+gva,Real annual GVA growth rate percentage,N
+gva_ph,Real annual output per hour growth rate percentage,N
+sat_scs,Satisfaction with social care services,N
+hle_birth,Healthy life expectancy at birth,N
+le_birth,Life expectancy at birth,N
+house_payments,Percentage of London adults who say they have not been able to meet their housing payments over the last six months (or who have struggled to do so),N
+sleep_rough_mth,Number of new people sleeping rough long term over the month,N
+dec_homes,Percent of homes meeting the Decent Homes Standard,N
+strugg,Proportion of Londoners struggling to make ends meet or having to go without basic needs,N
+safe_school,Percentage feel safe when they are at school,N
+safe_home,Percentage feel safe in the area where they live,N
+safe_online,Percentage feel safe when they are online,N
+sch_ready,School readiness: percentage of children achieving a good level of development at the end of Reception,N
+yr6_obesity,Year 6 prevalence of overweight (including obesity),N
+sch_happ,Self-reported happiness (school years 1-11) (slightly different question for years 1-2),N
+unfair,Proportion of Londoners treated unfairly in the last 12 months because of one or several protected characteristics or because of their social class,"6,8"
+gender_pg,Gender pay gap,N
+eth_pg,Ethnicity pay gap,N
+dis_pg,Disability pay gap,"0, 0.2" 
+med_hhi,"Percentage of individuals living in households with less than 50 per cent of contemporary median household income, after housing costs","0,0.25"
+locals,People from different backgrounds getting on well together in local area,N
+fml_vol,Formal volunteering in the last 12 months,"0,0.4"
+inf_vol,Informal volunteering in the last 12 months,N
+help,"Percentage of adults who definitely or tend to agree with the statement 'if I needed help, there are people who would be there for me'",N
+hate_crimes,Number of hate crime offences,N
+green_gas,Greenhouse gas emissions (MtCO2e) in London,N
+aqpm25,Annual mean PM2.5 particulate concentration,N
+aqno2,Annual mean concentrations of nitrogen dioxide (NO2),N
+part_of_nature,Percentage of Londoners who agree that they feel part of nature,N
+heat_associated_deaths,Excess mortality during periods of heat,N
+energy_performance,Percentage of homes with energy efficiency ratings of C or above,N
+recycling_rates,Household waste recycling rate,N
+health_le_m,Life expectancy at birth for males and females separately,N
+health_le_f,Life expectancy at birth for males and females separately,N
+health_hle_m,Healthy life expectancy at birth for males and females separately,N
+health_hle_f,Healthy life expectancy at birth for males and females separately,N
+inf_mort,"Infant mortality rate per 1,000 live births",N
+u75_m_cardio,Premature death from cardiovascular disease (under 75 mortality rate from all circulatory diseases),"0,180"
+u75_m_cancer,Premature deaths from cancer (under 75 mortality rate from cancer),"0,180"
+sat_nhs,Public satisfaction with the NHS,N
+usat_scs,Satisfaction with social care services,N
+lbw,Prevalence of Low Birth Weight,"0,4"
+smoking,Smoking Prevalence in adults (aged 18 and over),"0,25"
+anxiety_lifesat,Average personal wellbeing scores,N
+childhood_vacc,Childhood vaccination coverage percentage,N
+cladding_remediation,Buildings with unsafe cladding in remediation programme,N
+rent_affordability,"Index of private rent, earnings and implied affordability",N
+rent_payment,Percentage of households that find it difficult to pay rent,N
+roughsleeping_first_time,Joined living on the streets population,N
+homelessness,"Rate of households who are homeless and living in temporary accommodation per 100,000",N
+neighbourhood_belonging,Percentage of adults who feel they belong to their immediate local area,N
+neighbourhood_satisfaction,Percentage of adults who are satisfied with their local area as a place to live,N
+hmls,Number of homeless households in temporary accommodation arranged by London boroughs,N
+sleep_rough,"Rate of people sleeping rough over the month per 100,000 people",N
+emp_prof,Percentage of employees who are not fully proficient,N
+skills_short,Percentage of skills shortage vacancies,N
+bus_train,Percentage of businesses providing on the job training,N
+fe_skills,Percentage of FE and Skills learners with positive destination (inc. employment and further learning),N
+grad_outcomes,HE graduate outcomes,N
+top_skills,Top common and technical skills in demand as measured by frequency in job postings (%),N
+job_posts,Trends in online job-postings,N
+neets,Percentage of Londoners without qualifications,N
+level3,Percentage of Londoners with Level 3+ qualifications,N
+violence_with_injury,Violence with Injury,N
+proven_reoffending,Proven reoffending rate,N
+victimisation_rate,Victimisation rate,"0,0.1"
+victim_satisfaction,Satisfaction level of reporting victims,N
+worried_crime_asb,Worried about crime,N
+trust_in_mps,Trust in the Metropolitan Police Service,"0,1"
+tno,Total Notifiable Offences,N
+jq_score,Average job quality score,N
+increased_footfall,% of high streets and town centres that saw an increase in footfall on the previous year,N
+hs_spend,% of high streets and town centres that saw an increase on real-terms spend on the previous year,N
+vacancy_rate,Vacancy rate (%) of retail premises,N
+bbc,Business births and closures,N
+gva_composition,Sectoral Composition and Growth of GVA (% by industry),N
+pmi_conf,Consumer confidence and PMI index,N
+hs_increased_purchases,Percentage of London high streets and town centres that saw increased purchases on the previous year,N

@@ -3,7 +3,7 @@
 // r2d3: https://rstudio.github.io/r2d3
 //
 
-function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy, yfmt) {
+function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy, yfmt, opts) {
   svg.selectAll(".yaxis_1").remove()
   let chart_id = 1
 
@@ -20,9 +20,15 @@ function yaxis(data, marginTop, marginRight, marginBottom, marginLeft, wy, hy, y
   let ymm = (yext[0] >= 0 && yext[0] - range < 0 ? 0 : yext[0] - rangepad)
   // HERE TAKE yDomain to 0 if within 50% or rangepad
   // if ymm > 0 and yext[0] -
+  let range_maxpad = range * 1.5
+  // ymm = (yext[0] - range_maxpad)
 
+  if(opts.yforce == undefined) {
+    yDomain = [ymm, yext[1] + rangepad];
+  } else {
+    yDomain = opts.yforce
+  }
 
-  yDomain = [ymm, yext[1] + rangepad];
   yRange = [(hy - marginTop - marginBottom), marginTop]
 
   let yg = svg.append("g")

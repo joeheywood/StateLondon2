@@ -50,7 +50,6 @@ function lines(data, color, xScale, yScale) {
     .attr("d", d => {
       return d3.line()
       .defined((d, i) => {
-        console.log(`d: ${d.y} - ${isNaN(d.y)}`)
         return !isNaN(d.y)
 
       })

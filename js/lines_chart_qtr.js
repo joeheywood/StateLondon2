@@ -17,11 +17,11 @@ r2d3.onRender(function(data, svg, width, height, options){
     d.xd = parseTime(d.xd)
   })
   high = options.high
-  let yax = new yaxis(data, 0, 0, 0, 0, width, height, options.yfmt)
+  let yax = new yaxis(data, 0, 0, 0, 0, width, height, options.yfmt, options.yforce)
   // let ll = new legend_labels(data, 0, 0, 0, 0, width, height)
   let ll = new legend_labels(data, 0, 0, 0, 0, width, height, high)
   let xx = new run_xaxis_qtr2(data, 0, ll.lbwidth, 0, yax.lbwidth, false, width, height)
-  yax = new yaxis(data, 0, ll.lbwidth, xx.height, 0, width, height, options.yfmt)
+  yax = new yaxis(data, 0, ll.lbwidth, xx.height, 0, width, height, options.yfmt, options.yforce)
   ll = new legend_labels(data, 0, ll.lbwidth, xx.height, 0, width, height, high)
   //ll = new legend_labels(data, 0, ll.lbwidth, xx.height, 0, width, height)
 
@@ -34,10 +34,10 @@ r2d3.onRender(function(data, svg, width, height, options){
 
 r2d3.onResize(function(width, height){
   svg.selectAll("*").remove()
-  let yax = new yaxis(dd1, 0, 0, 0, 0, width, height, options.yfmt)
+  let yax = new yaxis(dd1, 0, 0, 0, 0, width, height, options.yfmt, options.yforce)
   let ll = new legend_labels(dd1, 0, 0, 0, 0, width, height, high)
   let xx = new run_xaxis_qtr2(dd1, 0, 84, 0, yax.lbwidth, false, width, height)
-  yax = new yaxis(dd1, 0, 65, xx.height, 0, width, height, options.yfmt)
+  yax = new yaxis(dd1, 0, 65, xx.height, 0, width, height, options.yfmt, options.yforce)
   ll = new legend_labels(dd1, 0, 84, xx.height, 0, width, height)
 
   let lns = new lines(dd1, ll.color, xx.xScale, yax.yScale)
