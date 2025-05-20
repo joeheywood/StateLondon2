@@ -424,7 +424,7 @@ remove_div(glue("{theme_dir}/{d$m$title}.svg"))
 # save_d3_svg(smk, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
 # remove_div(glue("{theme_dir}/{d$m$title}.svg"))
 
-# footfall
+# increased footfall
 # bar
 # forces y axis
 d <- get_data2("increased_footfall")
@@ -451,6 +451,49 @@ theme_dir <- glue("{output_dir}/{d$m$theme}")
 save_d3_svg(ff, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
 remove_div(glue("{theme_dir}/{d$m$title}.svg"))
 
+d <- get_data2("hs_spend")
+d$d$xd <- str_replace_all(d$d$area_code, "(\\w+) - (\\w+)", "\\1")
+d$d$b <- str_replace_all(d$d$area_code, "(\\w+) - (\\w+)", "\\2")
+
+spnd <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
+                  input = list(unempl = d$d,
+                               metaopts = list(
+                                 includetitles = FALSE),
+                               chartopts = list(
+                                 type = "character",
+                                 charttype = "bar",
+                                 ytickformat = ".0%",
+                                 high = FALSE,
+                                 leglab = "legend",
+                                 lgg = list(o = "top"),
+                                 forceYDomain = c(0, .5)
+
+                               ) )
+)
+
+d <- get_data2("hs_increased_purchases")
+d$d$xd <- str_replace_all(d$d$area_code, "(\\w+) - (\\w+)", "\\1")
+d$d$b <- str_replace_all(d$d$area_code, "(\\w+) - (\\w+)", "\\2")
+
+inc_pur <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
+                  input = list(unempl = d$d,
+                               metaopts = list(
+                                 includetitles = FALSE),
+                               chartopts = list(
+                                 type = "character",
+                                 charttype = "bar",
+                                 ytickformat = ".0%",
+                                 high = FALSE,
+                                 leglab = "legend",
+                                 lgg = list(o = "top"),
+                                 forceYDomain = c(0, .8)
+
+                               ) )
+)
+
+theme_dir <- glue("{output_dir}/{d$m$theme}")
+save_d3_svg(inc_pur, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
+remove_div(glue("{theme_dir}/{d$m$title}.svg"))
 
 # victim satisfaction
 # just change to y axis
@@ -577,3 +620,27 @@ save_d3_svg(tno, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
 remove_div(glue("{theme_dir}/{d$m$title}.svg"))
 
 
+d <- get_data2("gva_composition") ## needs to be a bar chart
+
+d <- get_data2("gva") # missing data
+
+d <- get_data2("gva_ph") # missing data
+
+d <- get_data2("bbc")
+d$d$b <- d$d$area_code
+
+bbc <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
+                   input = list(unempl = d$d,
+                                metaopts = list(
+                                  includetitles = FALSE),
+                                chartopts = list(
+                                  type = "date",
+                                  ytickformat = ".2s",
+                                  forceYDomain = c(0, 25000)
+                                ) )
+)
+
+
+theme_dir <- glue("{output_dir}/{d$m$theme}")
+save_d3_svg(bbc, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
+remove_div(glue("{theme_dir}/{d$m$title}.svg"))
