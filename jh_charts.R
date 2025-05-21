@@ -57,6 +57,31 @@ remove_div <- function(fl) {
   TRUE
 }
 
+run_local_line_chart <- function(dt) {
+  tryCatch({
+    scrpt <- ifelse(dt$m$timeperiod_type == "Quarter", "js/lines_chart_qtr.js", "js/lines_chart_dt.js")
+    if(dt$m$ystart0 %in% "N") {
+      yforce = c()
+    } else {
+      yforce = str_split(dt$m$ystart0, ",")[[1]]
+    }
+    # yforce <- ifelse(dt$m$ystart0 == "N", c(),str_split(dt$m$ystart0, ",")[[1]] )
+    d3 <-  r2d3(data = dt$d, script = scrpt,
+                options = list(yfmt = dt$m$yformat, high = high, yforce=yforce ),
+                dependencies = deps, width = 1100, height = 530)
+    theme_dir <- glue("{output_dir}/{dt$m$theme}")
+    if(!dir.exists(theme_dir)) dir.create(theme_dir)
+    save_d3_svg(d3, glue("{theme_dir}/{dt$m$title}.svg") )
+    print(glue("{dtst} = {theme_dir} = {dt$m$title}"))
+    return(glue("{theme_dir}/{dt$m$title}.svg"))
+
+  }, error = function(e) {
+    print(glue("######## ERROR in {dtst} ###########"))
+    print(e)
+    return("")
+  })
+}
+
 # infant mortality
 # legend at top
 # split x axis to two parts
@@ -644,3 +669,37 @@ bbc <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
 theme_dir <- glue("{output_dir}/{d$m$theme}")
 save_d3_svg(bbc, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
 remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+
+
+
+### SKILLS ###
+d <- get_data2("fe_skills")
+
+d <- get_data2("grad_outcomes")
+
+d <- get_data2("job_posts")
+d$d$b <- d$d$area_code
+
+robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
+            input = list(unempl = d$d,
+                         metaopts = list(
+                           includetitles = FALSE),
+                         chartopts = list(
+                           type = "date"
+                         ) )
+)
+
+d <- get_data2("top_skills")
+# need to split these out into two charts. Needs observable!
+#### HOUSING ####
+
+d <- get_data2("rent_payment") # just needs separating out. join London/ROE with categories
+
+d <- get_data2("cladding_remediation") # needs to be a grouped bar
+
+d <- get_data2("roughsleeping_first_time") # needs to be a stacked bar
+
+
+
+
+
