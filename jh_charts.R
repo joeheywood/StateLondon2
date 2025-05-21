@@ -699,7 +699,11 @@ d <- get_data2("cladding_remediation") # needs to be a grouped bar
 
 d <- get_data2("roughsleeping_first_time") # needs to be a stacked bar
 
+d <- get_data2("homeless_decisions")
 
+#### ECONOMY ####
+d <- get_data2("gva") # needs more data to be added
 
+d <- get_data2("gva_ph")
 
 
