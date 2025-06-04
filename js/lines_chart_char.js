@@ -14,7 +14,7 @@ r2d3.onRender(function(data, svg, width, height, options){
     return false
   }
 
-  high = false //options.high
+  high = options.high
 
   let yax = new yaxis(data, 0, 0, 0, 0, width, height, options.yfmt, options)
   let ll = new legend_labels(data, 0, 0, 0, 0, width, height, high, yax.yScale)

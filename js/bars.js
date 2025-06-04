@@ -114,6 +114,8 @@ function bars (data, color, xScale, yScale, opts) {
           })
           .attr("width", xSubgroup.bandwidth())
           .attr("y", function(d) {
+            console.log(`y: ${d.y} | yscl0: ${yScale(0)} | yscly: ${yScale(d.y)}`)
+
             return (d.y >= 0 ? yScale(d.y) : yScale(0));
           })
           .attr("height", function(d) {

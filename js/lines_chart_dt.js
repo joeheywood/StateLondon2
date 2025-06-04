@@ -8,8 +8,8 @@ let high = true;
 
 r2d3.onRender(function(data, svg, width, height, options){
   // console.log(`w: ${width} | h: ${height} | dl: ${data.length}`)
-  width = 1000
-  height = 500
+  // width = 1000
+  // height = 500
   if(data.length == 0) {
     return false
   }

@@ -9,7 +9,7 @@ get_LLOs <- function(chpt) {
   if(nchar(chpt) < 2){
     return(c(".", ".."))
   }
-  cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
+  cn <- dbConnect(SQLite(), "app/data/sol_dash.db")
   qry <- glue("SELECT DISTINCT llo FROM meta WHERE theme = '{chpt}'")
   dat <- dbGetQuery(cn, qry)
   on.exit(dbDisconnect(cn))

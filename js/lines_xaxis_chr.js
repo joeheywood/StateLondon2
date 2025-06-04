@@ -160,11 +160,12 @@ function run_xaxis_chr(data, marginTop, marginRight, marginBottom, marginLeft, a
 
 
 
-  data.forEach(function(d){
+/*  data.forEach(function(d){
     console.log(`${d.timeperiod_label}`)
     let parseTime = d3.timeParse("%Y-%m-%d");
     d.xd = parseTime(d.xd)
   })
 
-let rr = new run_xaxis_chr(data, 0, 0, 0, 0, false, width, height)
+// let rr = new run_xaxis_chr(data, 0, 0, 0, 0, false, width, height)
 
+*/

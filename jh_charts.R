@@ -1436,11 +1436,12 @@ d$d$xd <- d$d$area_code
 d$d$b <- d$d$area_name
 d$d <- d$d %>% select(xd, b, y)
 d$d <- rbind(d$d, data.frame(xd = "", b = "", y = 0))
+d$d$xd[which(d$d$xd == "Positive employee involvment")] <- "Positive employee involvement"
 
 d$d$order <- factor(d$d$xd,
                     levels = c(
                       "Positive career progression",
-                      "Positive employee involvment",
+                      "Positive employee involvement",
                       "Not in low pay",
                       "No unpaid overtime",
                       "Satisfactory hours",
