@@ -14,9 +14,12 @@ deps <- c(
   "js/labels.js",
   "js/lines_qtr.js",
   "js/lines_dt.js",
+  # "js/lines_xaxis_chr.js",
+  # "js/lines_chart_char.js",
   "js/lines.js",
   "js/yaxis.js" )
 
+# deps <- dir("js", full.names = TRUE)
 
 run_line_chart <- function(dtst) {
   tryCatch({

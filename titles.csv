@@ -1,0 +1,129 @@
+dataset,theme,title,subtitle,source_url,source_label
+unemp,Economy,Share of extended unemployment,NA,NA,ONS
+emp,Economy,Employment rate (percentage),NA,NA,ONS
+gva,Economy,Real annual GVA growth rate percentage,NA,NA,ONS
+gva_ph,Economy,Real annual output per hour growth rate percentage,NA,NA,ONS
+sat_scs,Health,Satisfaction with social care services,NA,NA,"Personal Social Services Adult Social Care Survey, NHS Digital"
+hle_birth,Health,Healthy life expectancy at birth,NA,NA,ONS
+le_birth,Health,Life expectancy at birth,NA,NA,ONS
+house_payments,Housing,Percentage of London adults who say they have not been able to meet their housing payments over the last six months (or who have struggled to do so),NA,NA,GLA cost of living polling
+sleep_rough_mth,Housing,Number of new people sleeping rough long term over the month,NA,NA,DLUHC
+dec_homes,Housing,Percent of homes meeting the Decent Homes Standard,NA,NA,English Housing Survey?
+safe_school,CYP,Percentage feel safe when they are at school,NA,NA,We Are London - MOPAC Youth Survey (aged 11-16)
+safe_home,CYP,Percentage feel safe in the area where they live,NA,NA,We Are London - MOPAC Youth Survey (aged 11-16)
+safe_online,CYP,Percentage feel safe when they are online,NA,NA,We Are London - MOPAC Youth Survey (aged 11-16)
+sch_ready,CYP,School readiness: percentage of children achieving a good level of development at the end of Reception,NA,NA,DfE
+gender_pg,Social Justice,Gender pay gap,NA,NA,NA
+eth_pg,Social Justice,Ethnicity pay gap,NA,NA,NA
+dis_pg,Social Justice,Disability pay gap,NA,NA,NA
+med_hhi,Social Justice,"Percentage of individuals living in households with less than 50 per cent of contemporary median household income, after housing costs",NA,NA,NA
+locals,Social Justice,People from different backgrounds getting on well together in local area,NA,NA,NA
+fml_vol,Social Justice,Formal volunteering in the last 12 months,NA,NA,NA
+inf_vol,Social Justice,Informal volunteering in the last 12 months,NA,NA,NA
+help,Social Justice,"Percentage of adults who definitely or tend to agree with the statement 'if I needed help, there are people who would be there for me'",NA,NA,NA
+hate_crimes,Social Justice,Number of hate crime offences,NA,NA,MPS
+green_gas,Environment,Greenhouse gas emissions (MtCO2e) in London,NA,NA, 
+aqpm25,Environment,Annual mean PM2.5 particulate concentration,NA,NA,London Air and AQ England
+aqno2,Environment,Annual mean concentrations of nitrogen dioxide (NO2),NA,NA,London Air and AQ England
+part_of_nature,Environment,Percentage of Londoners who agree that they feel part of nature,NA,NA, 
+heat_associated_deaths,Environment,Excess mortality during periods of heat,NA,NA, 
+recycling_rates,Environment,Household waste recycling rate,NA,NA, 
+emp_prof,Skills,Percentage of employees who are not fully proficient,NA,NA, 
+skills_short,Skills,Percentage of skills shortage vacancies,NA,NA, 
+bus_train,Skills,Percentage of businesses providing on the job training,NA,NA, 
+fe_skills,Skills,Percentage of FE and Skills learners with positive destination (inc. employment and further learning),NA,NA, 
+grad_outcomes,Skills,HE graduate outcomes,NA,NA, 
+top_skills,Skills,Top common and technical skills in demand as measured by frequency in job postings (%),NA,NA, 
+job_posts,Skills,Trends in online job-postings,NA,NA, 
+neets,Skills,Percentage of Londoners without qualifications,NA,NA,Annual Population Survey
+level3,Skills,Percentage of Londoners with Level 3+ qualifications,NA,NA,Annual Population Survey
+violence_with_injury,Crime,Violence with Injury,NA,NA, 
+proven_reoffending,Crime,Proven reoffending rate,NA,NA, 
+victimisation_rate,Crime,Victimisation rate,NA,NA, 
+victim_satisfaction,Crime,Satisfaction level of reporting victims,NA,NA, 
+worried_crime_asb,Crime,Worried about crime,NA,NA, 
+trust_in_mps,Crime,Trust in the Metropolitan Police Service,NA,NA, 
+tno,Crime,Total Notifiable Offences,NA,NA, 
+health_le_m,Health,Life expectancy at birth for males and females separately,NA,NA,ONS
+health_le_f,Health,Life expectancy at birth for males and females separately,NA,NA,ONS
+health_hle_m,Health,Healthy life expectancy at birth for males and females separately,NA,NA,ONS
+health_hle_f,Health,Healthy life expectancy at birth for males and females separately,NA,NA,ONS
+inf_mort,Health,"Infant mortality rate per 1,000 live births",NA,NA,"OHID, using ONS data"
+u75_m_cardio,Health,Premature death from cardiovascular disease (under 75 mortality rate from all circulatory diseases),NA,NA,ONS
+u75_m_cancer,Health,Premature deaths from cancer (under 75 mortality rate from cancer),NA,NA,ONS
+sat_nhs,Health,Public satisfaction with the NHS,NA,NA,"Health Survey for England, UK Data Service"
+usat_scs,Health,Satisfaction with social care services,NA,NA,"Personal Social Services Adult Social Care Survey, NHS Digital"
+lbw,Health,Prevalence of Low Birth Weight,NA,NA, 
+smoking,Health,Smoking Prevalence in adults (aged 18 and over),NA,NA, 
+anxiety_lifesat,Health,Average personal wellbeing scores,NA,NA, 
+childhood_vacc,Health,Childhood vaccination coverage percentage,NA,NA, 
+energy_performance,Environment,Percentage of homes with energy efficiency ratings of C or above,NA,NA, 
+cyp_gld,CYP,Percentage of children achieving a good level of development,NA,NA, 
+cyp_attainment8,CYP,Average Attainment 8 score,NA,NA, 
+sch_happ,CYP,Self-reported happiness,NA,NA, 
+cyp_safe,CYP,Percentage of children who feel safe,NA,NA, 
+cyp_level3,CYP,Percentage of students who achieve level 3 by age 19,NA,NA, 
+cyp_neet,CYP,Percentage of 18-24 year olds NEET,NA,NA, 
+yr6_obesity,CYP,Prevalence of obesity in Year Reception,NA,NA, 
+cyp_mental_disorder,CYP,Children with a probable mental disorder,NA,NA, 
+cyp_suspension,CYP,Suspension Rate,NA,NA, 
+cyp_exclusion,CYP,Exclusion Rate,NA,NA, 
+cyp_absence,CYP,School Absence,NA,NA, 
+decision_influence,Social Justice,Proportion who agree that they can personally influence decisions affecting their local area,NA,NA,NA
+food_sec,Social Justice,Percentage of households with differing levels of food insecurity,NA,NA,NA
+talk_neigh,Social Justice,Proportion who chat to their neighbours at least once a month (%),NA,NA,NA
+pay_gap_disability,Social Justice,Disability pay gap,NA,NA,NA
+pay_gap_gender,Social Justice,Gender pay gap,NA,NA,NA
+voter_reg,Social Justice,Proportion of eligible adults aged 18 and over who are registered for local elections,NA,NA,NA
+unfair,Social Justice,Proportion of Londoners treated unfairly in the last 12 months because of one or several protected characteristics or because of their social class,NA,NA,NA
+social_action,Social Justice,Proportion who were personally involved in social action in the last year (%),NA,NA,NA
+volunt_formal,Social Justice,Formal volunteering in the last 12 months,NA,NA,NA
+volunt_informal,Social Justice,Informal volunteering in the last 12 months,NA,NA,NA
+trust_neigh,Social Justice,Proportion who agree that many of the people can be trusted in their local neighbourhood (%),NA,NA,NA
+bills_arrears,Social Justice,Proportion with household bills in arrears,NA,NA,NA
+pay_gap_ethnicity,Social Justice,Ethnicity pay gap,NA,NA,NA
+gva_per_hour_worked_rhc,Economy,CVM GVA per hour worked indices; London (2019=100),NA,NA,NA
+annual_gva_growth,Economy,Real annual GVA growth rate (%),NA,NA,NA
+extended_unemployment,Economy,Share of 16-64 unemployed or inactive (%),NA,NA,NA
+jq_score,Economy,Job quality indicators,NA,NA,"ONS Annual Population Survey (Secure Access), 2020-2022"
+increased_footfall,Economy,% of high streets and town centres that saw an increase in footfall on the previous year,NA,NA, 
+hs_spend,Economy,% of high streets and town centres that saw an increase on real-terms spend on the previous year,NA,NA, 
+vacancy_rate,Economy,Vacancy rate (%) of retail premises,NA,NA, 
+bbc,Economy,Business births and closures,NA,NA, 
+gva_composition,Economy,Sectoral Composition and Growth of GVA (% by industry),NA,NA, 
+pmi_conf,Economy,Consumer confidence and PMI index,NA,NA, 
+hs_increased_purchases,Economy,Percentage of London high streets and town centres that saw increased purchases on the previous year,NA,NA, 
+total_migration,Demography,Total annual migration flows,NA,NA,NA
+net_migration,Demography,Annual net migration,NA,NA,NA
+tfl_demand_idx,Transport,"Travel demand on principal modes, index 2019/20 = 100",NA,NA,Transport for London
+tfl_active20_daily,Transport,Proportion of London residents undertaking 20mins of active travel per day,NA,NA,Transport for London
+tfl_ksi,Transport,Number of people killed or seriously injured on London's roads,NA,NA,Transport for London
+tfl_sfdelay_reduction,Transport,Reduction from the 2016 baseline in the additional journey time using only the step-free transport network.,NA,NA,Transport for London
+tfl_bus_speed,Transport,"Average bus network speed in London, index (2015 = 100)",NA,NA,Transport for London
+tfl_journeys,Transport,"Percentage of trips made by walking, cycling and public transport  - Bus",NA,NA,Transport for London
+gc_ldn_domint,Global City,Visits to London - domestic and international,NA,NA,NA
+gc_fdi_capex,Global City,Foreign Direct Investment in London - Projects and Capex,NA,NA,NA
+gc_int_vist_ldn,Global City,International visits to London 2015-2024,NA,NA,NA
+gc_digital_engagement_arts,Global City,Digital engagement with the arts,NA,NA,NA
+gc_visitor_spend,Global City,London visitor spend (after CPI inflation),NA,NA,NA
+gc_physical_engagement_arts,Global City,Adults engagement with the arts in the last 12 months (physical),NA,NA,NA
+gc_int_visitor_nights,Global City,London visitor nights,NA,NA,NA
+strugg,Social Justice,Proportion of Londoners struggling to make ends meet or having to go without basic needs,NA,NA,GLA YouGov polling
+cladding_remediation,Housing,Buildings with unsafe cladding in remediation programme,NA,NA,MHCLG Building Safety Data Releases
+missed_payment,Housing,% of London adults who say they have not been able to meet their housing payments over the last six months (or who have struggled to do so),NA,NA, 
+rent_affordability,Housing,"Index of private rent, earnings and implied affordability",NA,NA,ONS
+rent_payment,Housing,Percentage of households that find it difficult to pay rent,NA,NA,English Housing Survey
+roughsleeping_first_time,Housing,Joined living on the streets population,NA,NA,GLA CHAIN quarterly rough sleeping reports
+homelessness,Housing,"Rate of households who are homeless and living in temporary accommodation per 100,000",NA,NA,"MHCLG, Statutory homelessness statistics"
+neighbourhood_belonging,Housing,Percentage of adults who feel they belong to their immediate local area,NA,NA,DCMS Community Life Survey
+neighbourhood_satisfaction,Housing,Percentage of adults who are satisfied with their local area as a place to live,NA,NA,DCMS Community Life Survey
+hmls,Housing,Number of homeless households in temporary accommodation arranged by London boroughs,NA,NA,MHCLG Statutory homelessness: Detailed local authority level tables
+sleep_rough,Housing,"Rate of people sleeping rough over the month per 100,000 people",NA,NA,DLUHC
+homeless_decisions,Housing,Number of household owed a prevention or relief duty and accepted as statutorily homeless in London,NA,NA,NA
+total_fertility_rate,Demography,Total fertility rate,NA,NA,NA
+births_mothers_cob,Demography,Annual births by mother's country of birth,NA,NA,NA
+annual_births,Demography,Annual births in London,NA,NA,NA
+births_age_mother,Demography,Annual births by age of mother,NA,NA,NA
+annual_change_component,Demography,Annual change in population,NA,NA,NA
+population_age_structure,Demography,Population age structure,NA,NA,NA
+total_population_year,Demography,Total population,NA,NA,NA

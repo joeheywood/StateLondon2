@@ -8,9 +8,10 @@ function get_labels(y) {
 }
 
 
-function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, wl, hl, highlight) {
+function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, wl, hl, highlight, yScale, xscl) {
   // --- Constructor --- //
   svg.selectAll(".labels").remove()
+  let self = this
   /*let marginLeft = 0;
   let marginRight = 81;
   let marginTop = 0;
@@ -31,8 +32,8 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, w
   lbwidth = 25;
   lbheight = 0;
 
-  let dats = d3.group(data, d => d.b);
-  let cats = Array.from(dats.keys());
+  self.dats = d3.group(data, d => d.b);
+  let cats = Array.from(self.dats.keys());
 
   let legitems = cats.length + Object.keys(lgg).length
   //self.totwidth = width
@@ -99,7 +100,12 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, w
   let wdth = 0;
   let xDomain = d3.extent(data, d => d.xd)
   let xRange = [marginLeft, (wl - marginRight)]
-  let xScale = d3.scaleUtc(xDomain, xRange);
+  let xScale
+  if(xscl === undefined) {
+    xScale = d3.scaleUtc(xDomain, xRange);
+  } else {
+    xScale = xscl
+  }
   let yRange = [(hl - marginTop - marginBottom), marginTop]
   let yext = d3.extent(data, d => d.y)
   let range = yext[1] - yext[0]
@@ -109,11 +115,12 @@ function legend_labels(data, marginTop, marginRight, marginBottom, marginLeft, w
   let fontsize = "12pt"
 
 
-  let yScale = d3.scaleLinear(yDomain, yRange);
+  // let yScale = d3.scaleLinear(yDomain, yRange);
   // const yAxis = d3.axisLeft(yScale)
 
+
   cats.forEach((ct) => {
-    let cdat = dats.get(ct)
+    let cdat = self.dats.get(ct)
     let maxy = cdat[d3.maxIndex(cdat, d => d.xd)]
 
     // This messy little section gets called several times and fixes itself after

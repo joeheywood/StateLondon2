@@ -36,7 +36,7 @@ function lines(data, color, xScale, yScale) {
   const dashdats = d3.group(dashed, d => d.b)
 
 
-  let linesize = 4
+  let linesize = 6
 
   linesg
     .selectAll("path")
@@ -45,7 +45,7 @@ function lines(data, color, xScale, yScale) {
     .join("path")
     .attr('fill', 'none')
     .attr('stroke-width', linesize)
-    .attr("stroke-opacity", 0.95)
+    .attr("stroke-opacity", 0.85)
     .attr('stroke', d => color(d[0]))
     .attr("d", d => {
       return d3.line()

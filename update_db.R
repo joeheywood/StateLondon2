@@ -21,6 +21,9 @@ update_db_fl <- function() {
     }
 
 
+  } else {
+    print("Nothing to update")
+    FALSE
   }
 
 
