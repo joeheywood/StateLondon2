@@ -8,6 +8,7 @@ box::use(
 
 box::use(
   app/logic/get_chart_data[get_chart_data],
+  app/logic/run_chart[run_chart]
 )
 
 
@@ -28,51 +29,14 @@ server <- function(id, cs) {
     observe({
       dt <- get_chart_data(cs())
       output$chart_ttl <- renderText({dt$m$indicator})
+      # tryCatch({
+        dd <- run_chart(dt)
+        output$d3 <- renderD3({run_chart(dt)})
+      # }, error = function(e) {
+      #   print(glue("ERROR WITH {cs()}"))
+      #   output$chart_ttl <- renderText({glue("{dt$m$indicator}) _ {cs()}")})
+      # } )
 
-
-
-      deps <- c(
-        "js/labels.js",
-        "js/lines_qtr.js",
-        "js/lines_dt.js",
-        "js/lines_xaxis_chr.js",
-        "js/xaxis_char.js",
-        "js/bars.js",
-        "js/legend.js",
-        "js/lines.js",
-        "js/yaxis.js" )
-
-      tryCatch({
-        if(dt$o$charttype == "line") {
-          if(dt$o$type == "date") {
-            scrpt <- "js/lines_chart_dt.js"
-          } else if(dt$o$type == "character") {
-            scrpt <- ifelse(dt$o$leglab == "legend",
-                            "js/lines_chart_char_leg.js",
-                            "js/lines_chart_char.js")
-          }
-        }
-
-        if(dt$o$forceYDomain_t - dt$o$forceYDomain_b == 0) {
-          yfc <- NULL
-        } else {
-          yfc <- c(dt$o$forceYDomain_b, dt$o$forceYDomain_t)
-        }
-        output$d3 <- renderD3({
-        r2d3(data = dt$d,
-             script = scrpt,
-             dependencies = deps,
-             options = list(
-               high=TRUE,
-               yfmt = dt$o$ytickformat,
-               yforce = yfc
-             ))
-        })
-
-      }, error = function(e) {
-        print(e)
-        output$chart_ttl <- renderText({glue("{dt$m$indicator} _none_")})
-      })
 
     })
   })

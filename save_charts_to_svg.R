@@ -25,22 +25,33 @@ run_line_chart <- function(dtst) {
   tryCatch({
     dt <- get_chart_data(dtst)
     dt$d <- dt$d %>% arrange(xd)
-    scrpt <- ifelse(dt$m$timeperiod_type == "Quarter", "js/lines_chart_qtr.js", "js/lines_chart_dt.js")
-    high <- "London" %in% dt$d$b
-    if(dt$m$ystart0 %in% "N") {
-      yforce = c()
-    } else {
-      yforce = str_split(dt$m$ystart0, ",")[[1]]
-    }
     # yforce <- ifelse(dt$m$ystart0 == "N", c(),str_split(dt$m$ystart0, ",")[[1]] )
-    d3 <-  r2d3(data = dt$d, script = scrpt,
-                options = list(yfmt = dt$m$yformat, high = high, yforce=yforce ),
-                dependencies = deps, width = 1100, height = 530)
+    yforce <- c(dt$o$forceYDomain_b, dt$o$forceYDomain_t)
+    d3 <- r2d3(data = dt$d, script = scrpt, options = list(yfmt = dt$m$yformat, high = dt$o$high, yforce=yforce ),
+         dependencies = deps, width = 1100, height = 530)
     theme_dir <- glue("{output_dir}/{dt$m$theme}")
     if(!dir.exists(theme_dir)) dir.create(theme_dir)
     save_d3_svg(d3, glue("{theme_dir}/{dt$m$title}.svg") )
     print(glue("{dtst} = {theme_dir} = {dt$m$title}"))
+
     return(glue("{theme_dir}/{dt$m$title}.svg"))
+
+  }, error = function(e) {
+    print(glue("######## ERROR in {dtst} ###########"))
+    print(e)
+    return("")
+  })
+}
+
+run_line_chart_db <- function(dtst) {
+  tryCatch({
+    dt <- get_chart_data(dtst)
+    dt$d <- dt$d %>% arrange(xd)
+    # yforce <- ifelse(dt$m$ystart0 == "N", c(),str_split(dt$m$ystart0, ",")[[1]] )
+    yforce <- c(dt$o$forceYDomain_b, dt$o$forceYDomain_t)
+    d3 <- r2d3(data = dt$d, script = scrpt, options = list(yfmt = dt$m$yformat, high = dt$o$high, yforce=yforce ),
+         dependencies = deps, width = 1100, height = 530)
+    update_dash_db(d3)
 
   }, error = function(e) {
     print(glue("######## ERROR in {dtst} ###########"))
@@ -74,6 +85,13 @@ run_all_charts <- function() {
   dbDisconnect(cn)
   charts <- map_chr(m$dataset, run_line_chart)
   correct_svg_size()
+}
+
+run_all_charts_db <- function() {
+  cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
+  m <- dbGetQuery(cn, glue("SELECT dataset FROM meta"))
+  dbDisconnect(cn)
+  charts <- map_chr(m$dataset, run_line_chart)
 }
 
 # cn <- dbConnect(SQLite(), "app/data/sol_llo.db")

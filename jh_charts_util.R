@@ -70,8 +70,20 @@ remove_div <- function(fl) {
   TRUE
 }
 
-update_dash_db <- function(obj) {
-  df <- obj$x$input$unempl %>% select(dataset, xd, b, y)
+update_dash_db <- function(obj, stack_id = NULL) {
+  if("stack" %in% names(obj$x$input$chartopts) && !"b" %in% names(obj$x$input$unempl)) {
+    if(is.null(stack_id)) {
+      stop("No. You need an id separately for this one. It's a stack bar")
+    }
+    df <- obj$x$input$unempl %>%
+      mutate(dataset = stack_id) %>%
+      pivot_longer(-c(dataset, xd), names_to = "b", values_to = "y") %>%
+      select(dataset, xd, b, y)
+
+  } else {
+    df <- obj$x$input$unempl %>% select(dataset, xd, b, y)
+  }
+
   opts <- obj$x$input$chartopts
   cn <- dbConnect(SQLite(), "app/data/sol_dash.db")
   dtst <- df$dataset[1]
@@ -99,7 +111,10 @@ opts_db_blank <- data.frame(
   ytickformat = ".1f",
   forceYDomain_b = 0,
   forceYDomain_t = 0,
-  tick_base = 110
+  tick_base = 110,
+  stack = FALSE,
+  inc_mark = FALSE,
+  suffix = ""
 )
 
 update_dash_opts <- function(opts, dtst) {
@@ -125,5 +140,7 @@ update_dash_opts <- function(opts, dtst) {
 
 
 }
+
+
 
 

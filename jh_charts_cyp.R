@@ -60,9 +60,7 @@ ment_dis <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
                                      ) )
 )
 
-theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(ment_dis, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+update_dash_db(ment_dis)
 
 d <- get_data2("cyp_attainment8")
 d$d$xd <- d$d$timeperiod_label
@@ -83,9 +81,8 @@ att8 <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
                                  ) )
 )
 
-theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(att8, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+update_dash_db(att8)
+
 
 d <- get_data2("cyp_neet")
 d$d$b <- str_replace(d$d$b, " - 16-24", "")
@@ -103,9 +100,7 @@ nt <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
                                ) )
 )
 
-theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(nt, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+update_dash_db(att8)
 
 
 d <- get_data2("cyp_level3")
@@ -125,9 +120,7 @@ lvl3 <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
                                  ) )
 )
 
-theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(lvl3, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+update_dash_db(lvl3)
 
 d <- get_data2("cyp_absence")
 d$d$xd <- d$d$timeperiod_label
@@ -147,9 +140,7 @@ abs <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
                                 ) )
 )
 
-theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(abs, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+update_dash_db(abs)
 
 
 d <- get_data2("cyp_suspension")
@@ -169,9 +160,7 @@ susp <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
                                  ) )
 )
 
-theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(susp, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+update_dash_db(susp)
 
 d <- get_data2("cyp_exclusion")
 d$d$xd <- d$d$timeperiod_label
@@ -190,6 +179,4 @@ excl <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt",
                                  ) )
 )
 
-theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(excl, glue("{theme_dir}/{d$m$title}.svg"), delay = 2 )
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+update_dash_db(susp)
