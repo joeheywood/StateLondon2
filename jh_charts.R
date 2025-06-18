@@ -1307,6 +1307,15 @@ save_d3_svg(hmd, glue("{theme_dir}/{d$m$title}.svg"), delay = 2)
 remove_div(glue("{theme_dir}/{d$m$title}.svg"))
 
 d <- get_data2("missed_payment")
+dat <- read_csv("missed_payment.csv") %>%
+  select(b = 1, `Jan-22`:`Jan-25`) %>%
+  pivot_longer(-b, names_to = "xd", values_to = "y") %>%
+  mutate(xd = as.Date(paste0("1-", xd), format = "%d-%b-%y"), dataset = "missed_payment") %>%
+  select(dataset, xd, b, y)
+
+dat$b[which(dat$b == "Net: Struggled")] <- "Net: struggled"
+
+
 d$d <- d$d %>% select(xd, area_code, y)
 d$d <- d$d[which(!d$d$area_code %in% c("Not applicable", "Prefer not to say",
                                        "Don’t know" )),]
@@ -1333,19 +1342,21 @@ out <- out %>% pivot_longer(-xd, names_to = "b", values_to = "y")
 
 
 mss_py <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt", # could force colours?
-            input = list(unempl = out,
+            #input = list(unempl = out,
+            input = list(unempl = dat,
                          metaopts = list(
                            includetitles = FALSE),
                          chartopts = list(
                            type = "date",
+                           tick_base = 60,
                            ytickformat = ".0%"
                          ) )
 )
 theme_dir <- glue("{output_dir}/{d$m$theme}")
-save_d3_svg(mss_py, glue("{theme_dir}/{d$m$title}.svg"), delay = 2)
-remove_div(glue("{theme_dir}/{d$m$title}.svg"))
+save_d3_svg(mss_py, glue("{theme_dir}/{d$m$indicator}.svg"), delay = 2)
+remove_div(glue("{theme_dir}/{d$m$indicator}.svg"))
 
-d <- get_data2("hmls")
+dfe <- get_data2("hmls")
 # d$d$b <- "London"
 # hml <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt", # could force colours?
 #             input = list(unempl = d$d,

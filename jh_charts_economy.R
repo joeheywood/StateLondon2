@@ -25,11 +25,6 @@ gva <- robservable("@joe-heywood-gla/gla-dpa-chart", include = "chrt", # could f
 
 update_dash_db(gva)
 
-d <- get_data2("gva")
-fl <- glue("{theme_dir}/{d$m$title}.svg")
-if(file.exists(fl))file.remove(fl)
-
-
 
 d <- get_data2("jq_score")
 d$d$xd <- d$d$area_code

@@ -68,6 +68,7 @@ d <- get_data2("top_skills")
 d$d <- d$d %>% filter(area_code == "Common")
 d$d$xd <- d$d$area_name
 d$d$b <- d$d$timeperiod_label
+ordered <- d$d %>% filter(b == "Jan-Mar 2025") %>% arrange(y)
 d$d$order <- factor(d$d$xd,
                     levels = ordered$xd)
 d$d <- d$d %>% arrange(desc(b), order)

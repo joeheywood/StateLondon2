@@ -5,6 +5,7 @@ library(robservable)
 library(readxl)
 library(readr)
 library(glue)
+library(jsonlite)
 source("app/logic/get_chart_data.R")
 source("~/StateLondon2/save_charts_to_svg.R")
 output_dir <- "~/Projects/sol_svgs/"
@@ -24,7 +25,8 @@ jhupdates <- function() {
   dbSendQuery(cn, "update meta set yformat = '.0%' WHERE dataset = 'tfl_active20_daily'")
   dbSendQuery(cn, "update meta set yformat = '.0%' WHERE dataset = 'tfl_sfdelay_reduction'")
   dbSendQuery(cn, "update meta set yformat = '.1f' WHERE theme = 'Demography'")
-  dbSendQuery(cn, "update meta set title = indicator")
+  dbSendQuery(cn, "update meta set title = '.1f' WHERE theme = 'Demography'")
+  dbSendQuery(cn, "update meta set title = 'Travel demand on principal modes' WHERE dataset = 'tfl_demand_idx'")
   dbSendQuery(cn, "alter table meta add column  text default 'N'")
   dbSendQuery(cn, "alter table meta add column need_obs text default 'N'")
   View(dbGetQuery(cn, "select * from meta"))
@@ -93,10 +95,17 @@ update_dash_db <- function(obj, stack_id = NULL) {
   m <- dbGetQuery(cn, glue("select dataset, theme, title from meta where dataset = '{dtst}'"))
   dbDisconnect(cn)
   update_dash_opts(opts, dtst)
+  tryCatch({
+    theme_dir <- glue("{output_dir}/{m$theme}")
+    save_d3_svg(obj, glue("{theme_dir}/{m$title}.svg"), delay = 2 )
+    remove_div(glue("{theme_dir}/{m$title}.svg"))
 
-  theme_dir <- glue("{output_dir}/{m$theme}")
-  save_d3_svg(obj, glue("{theme_dir}/{m$title}.svg"), delay = 2 )
-  remove_div(glue("{theme_dir}/{m$title}.svg"))
+  }, error = function(e){
+    print(e)
+    print(glue("Couldn't print file for {m$title}"))
+
+  })
+
   return(a)
 
 }
@@ -138,6 +147,36 @@ update_dash_opts <- function(opts, dtst) {
   dbAppendTable(cn, "opts", optsdf)
   dbDisconnect(cn)
 
+
+}
+
+
+update_dash_db_auto <- function(obj, stack_id = NULL) {
+  df <- obj$x$data
+
+  opts <- obj$x$options
+  opts$ytickformat = opts$yfmt
+  opts$forceYDomain = opts$yforce
+  cn <- dbConnect(SQLite(), "app/data/sol_dash.db")
+  dtst <- df$dataset[1]
+  dbSendQuery(cn, glue("DELETE FROM chart_data WHERE dataset = '{dtst}'"))
+  a <- dbAppendTable(cn, "chart_data", df)
+  print(glue("Added {a} rows to chart_data"))
+  m <- dbGetQuery(cn, glue("select dataset, theme, title from meta where dataset = '{dtst}'"))
+  dbDisconnect(cn)
+  update_dash_opts(opts, dtst)
+  tryCatch({
+    theme_dir <- glue("{output_dir}/{m$theme}")
+    save_d3_svg(obj, glue("{theme_dir}/{m$title}.svg"), delay = 2 )
+    remove_div(glue("{theme_dir}/{m$title}.svg"))
+
+  }, error = function(e){
+    print(e)
+    print(glue("Couldn't print file for {m$title}"))
+
+  })
+
+  return(a)
 
 }
 

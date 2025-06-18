@@ -7,6 +7,7 @@ library(purrr)
 library(stringr)
 
 source("app/logic/get_chart_data.R")
+source("jh_charts_util.R")
 
 output_dir <- "~/Projects/sol_svgs/"
 
@@ -45,13 +46,14 @@ run_line_chart <- function(dtst) {
 
 run_line_chart_db <- function(dtst) {
   tryCatch({
+    print(glue("RUNNING FOR {dtst}"))
     dt <- get_chart_data(dtst)
     dt$d <- dt$d %>% arrange(xd)
     # yforce <- ifelse(dt$m$ystart0 == "N", c(),str_split(dt$m$ystart0, ",")[[1]] )
     yforce <- c(dt$o$forceYDomain_b, dt$o$forceYDomain_t)
-    d3 <- r2d3(data = dt$d, script = scrpt, options = list(yfmt = dt$m$yformat, high = dt$o$high, yforce=yforce ),
+    d3 <- r2d3(data = dt$d, script = "js/lines_chart_dt.js", options = list(yfmt = dt$m$yformat, high = dt$o$high, yforce=yforce ),
          dependencies = deps, width = 1100, height = 530)
-    update_dash_db(d3)
+    update_dash_db_auto(d3)
 
   }, error = function(e) {
     print(glue("######## ERROR in {dtst} ###########"))
@@ -91,7 +93,7 @@ run_all_charts_db <- function() {
   cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
   m <- dbGetQuery(cn, glue("SELECT dataset FROM meta"))
   dbDisconnect(cn)
-  charts <- map_chr(m$dataset, run_line_chart)
+  charts <- map(m$dataset, run_line_chart_db)
 }
 
 # cn <- dbConnect(SQLite(), "app/data/sol_llo.db")
